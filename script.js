@@ -1,5 +1,13 @@
 //your JS code here. If required.
 const tableDiv = document.getElementById("output");
+// STEP 1: Show loading row
+const loadingRow = tableDiv.insertRow();
+const loadingCell = loadingRow.insertCell();
+loadingCell.colSpan = 2;
+loadingCell.textContent = "Loading...";
+loadingCell.style.textAlign = "center";
+loadingRow.id="loding"
+
 const promise1 = new Promise((resolve,reject)=>{
 	setTimeout(()=>{
 		resolve({promise:'Promise 1',time:2})
@@ -19,8 +27,9 @@ const promise3 = new Promise((resolve,reject)=>{
 	},3000)
 })
 Promise.all([promise1,promise2,promise3]).then((data)=>{
-	console.log(`conso`,data)
+
 	if(data){
+		tableDiv.deleteRow(0);
 		data.forEach((el, index)=>{
 			const tr= tableDiv.insertRow(index);
 			const td1= tr.insertCell(0);
