@@ -6,7 +6,7 @@ const loadingCell = loadingRow.insertCell();
 loadingCell.colSpan = 2;
 loadingCell.textContent = "Loading...";
 loadingCell.style.textAlign = "center";
-loadingRow.id="loding"
+loadingRow.id="loading"
 
 const promise1 = new Promise((resolve,reject)=>{
 	setTimeout(()=>{
@@ -42,7 +42,7 @@ Promise.all([promise1,promise2,promise3]).then((data)=>{
 		const td1= tr.insertCell(0);
 		const td2= tr.insertCell(1);
 		td1.textContent='Total';
-		td2.textContent= new Date().getSeconds();	
+		td2.textContent= new Date().getMilliseconds().tofixed(3);	
 	}
 }).catch((e)=>{
 	console.log(e)
