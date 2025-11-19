@@ -30,19 +30,22 @@ Promise.all([promise1,promise2,promise3]).then((data)=>{
 
 	if(data){
 		tableDiv.deleteRow(0);
+		let totalTime = 0;
 		data.forEach((el, index)=>{
 			const tr= tableDiv.insertRow(index);
 			const td1= tr.insertCell(0);
 			const td2= tr.insertCell(1);
 			td1.textContent=el.promise;
-			td2.textContent=el.time;			
+			td2.textContent=el.time;		
+			totalTime = Math.max(totalTime, parseFloat(el.time));
 		})
 
 		const tr= tableDiv.insertRow(data.length);
 		const td1= tr.insertCell(0);
 		const td2= tr.insertCell(1);
 		td1.textContent='Total';
-		td2.textContent= new Date().getMilliseconds().tofixed(3);	
+		
+		td2.textContent= totalTime.toFixed(3);	
 	}
 }).catch((e)=>{
 	console.log(e)
